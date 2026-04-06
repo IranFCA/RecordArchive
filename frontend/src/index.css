@@ -1,0 +1,339 @@
+
+
+:root {
+  --text: #32127a;
+  --text-h: #1c39bb;
+  --bg: #fff;
+  --border: #d99058;
+  --code-bg: #f77fb3;
+  --accent: #00a693;
+  --accent-bg: rgba(0, 166, 147, 0.1);
+  --accent-border: rgba(0, 166, 147, 0.5);
+  --social-bg: rgba(254, 40, 162, 0.1);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  /* Persian Traditional Colors */
+  --persian-gold: #d4af37;
+  --persian-blue: #1c39bb;
+  --persian-red: #c81d11;
+  --persian-green: #00a693;
+  --persian-purple: #32127a;
+  --persian-orange: #d99058;
+  --persian-pink: #f77fb3;
+  --persian-indigo: #0067a5;
+
+  --sans: 'Vazirmatn', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Vazirmatn', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #f77fb3;
+    --text-h: #fe28a2;
+    --bg: #32127a;
+    --border: #701c1c;
+    --code-bg: #1c39bb;
+    --accent: #00a693;
+    --accent-bg: rgba(0, 166, 147, 0.15);
+    --accent-border: rgba(0, 166, 147, 0.5);
+    --social-bg: rgba(200, 29, 17, 0.1);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+/* Persian Cultural Design Elements */
+.persian-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.persian-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, var(--persian-gold) 2px, transparent 2px),
+    radial-gradient(circle at 75% 25%, var(--persian-blue) 2px, transparent 2px),
+    radial-gradient(circle at 25% 75%, var(--persian-red) 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, var(--persian-green) 2px, transparent 2px);
+  background-size: 40px 40px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.persian-border {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(45deg, var(--persian-gold), var(--persian-blue), var(--persian-red), var(--persian-green)) border-box;
+  border-radius: 8px;
+}
+
+.persian-ornament {
+  position: relative;
+}
+
+.persian-ornament::after {
+  content: '❋';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: var(--persian-gold);
+  font-size: 24px;
+  opacity: 0.6;
+  transform: rotate(45deg);
+}
+
+.persian-motif {
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.1) 10px, rgba(212, 175, 55, 0.1) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(28, 57, 187, 0.1) 10px, rgba(28, 57, 187, 0.1) 20px);
+}
+
+.persian-gradient {
+  background: linear-gradient(135deg,
+    var(--persian-blue) 0%,
+    var(--persian-purple) 25%,
+    var(--persian-red) 50%,
+    var(--persian-orange) 75%,
+    var(--persian-gold) 100%);
+}
+
+.persian-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(28, 57, 187, 0.1),
+    inset 0 1px 0 rgba(212, 175, 55, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.persian-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--persian-gold), var(--persian-blue), var(--persian-red));
+}
+
+.islamic-star {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+
+.islamic-star::before,
+.islamic-star::after {
+  content: '';
+  position: absolute;
+  background: var(--persian-gold);
+  border-radius: 2px;
+}
+
+.islamic-star::before {
+  width: 60px;
+  height: 8px;
+  top: 26px;
+  left: 0;
+  transform: rotate(0deg);
+}
+
+.islamic-star::after {
+  width: 60px;
+  height: 8px;
+  top: 26px;
+  left: 0;
+  transform: rotate(60deg);
+}
+
+.persian-calligraphy {
+  font-family: 'Vazir', serif;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+}
+
+.persian-accent {
+  position: relative;
+  color: var(--persian-gold);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.persian-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--persian-gold), var(--persian-blue));
+  border-radius: 1px;
+}
+
+/* Persian Miniature Style Elements */
+.miniature-frame {
+  border: 3px solid var(--persian-gold);
+  border-radius: 12px;
+  position: relative;
+  background: var(--bg);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+}
+
+.miniature-frame::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, var(--persian-gold), var(--persian-blue), var(--persian-red), var(--persian-green));
+  border-radius: 15px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.persian-scroll {
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(212, 175, 55, 0.1) 100%);
+  border-left: 4px solid var(--persian-gold);
+  border-right: 4px solid var(--persian-blue);
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.persian-scroll::before,
+.persian-scroll::after {
+  content: '⋆';
+  position: absolute;
+  color: var(--persian-gold);
+  font-size: 24px;
+  top: 10px;
+}
+
+.persian-scroll::before {
+  left: 10px;
+}
+
+.persian-scroll::after {
+  right: 10px;
+}
+
+/* Persian Carpet Pattern Background */
+.persian-carpet {
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(28, 57, 187, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(200, 29, 17, 0.1) 0%, transparent 50%);
+  background-size: 100px 100px;
+}
+
+/* Persian Tile Pattern */
+.persian-tile {
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(0, 166, 147, 0.1) 20px, rgba(0, 166, 147, 0.1) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(217, 144, 88, 0.1) 20px, rgba(217, 144, 88, 0.1) 40px);
+  background-size: 40px 40px;
+}
+
+/* Persian Lantern Effect */
+.persian-lantern {
+  position: relative;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: lantern-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes lantern-glow {
+  0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+  100% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+}

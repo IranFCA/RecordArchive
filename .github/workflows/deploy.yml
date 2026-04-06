@@ -1,0 +1,73 @@
+name: Deploy to MV
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: main
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create frontend .env file
+        run: |
+          cd frontend
+          cat > .env << EOF
+          VITE_API_BASE_URL=
+          VITE_ADMIN_FEATURES_ENABLED=${{ secrets.VITE_ADMIN_FEATURES_ENABLED }}
+          VITE_ADMIN_ROUTE_PATH=${{ secrets.VITE_ADMIN_ROUTE_PATH }}
+          VITE_TURNSTILE_SITE_KEY=${{ secrets.VITE_TURNSTILE_SITE_KEY }}
+          EOF
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Upload project
+        run: |
+          rsync -az --delete \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "backend/uploads" \
+            -e "ssh -i ~/.ssh/id_rsa" \
+            ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.APP_DIR }}/"
+
+      - name: Clean up old containers and deploy
+        run: |
+          ssh -i ~/.ssh/id_rsa "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "
+            set -e
+
+            cd \"${{ secrets.APP_DIR }}\"
+
+            if docker compose version >/dev/null 2>&1; then
+              COMPOSE_CMD='docker compose'
+            elif command -v docker-compose >/dev/null 2>&1; then
+              COMPOSE_CMD='docker-compose'
+            else
+              echo 'Docker Compose is not installed.'
+              exit 1
+            fi
+
+            \$COMPOSE_CMD down --remove-orphans --rmi local || true
+            docker system prune -f || true
+
+            export APP_DIR='${{ secrets.APP_DIR }}' && \
+            export APP_PORT='${{ vars.APP_PORT }}' && \
+            export POSTGRES_DB='${{ secrets.POSTGRES_DB }}' && \
+            export POSTGRES_USER='${{ secrets.POSTGRES_USER }}' && \
+            export DATABASE_URL='${{ secrets.DATABASE_URL }}' && \
+            export POSTGRES_PASSWORD='${{ secrets.POSTGRES_PASSWORD }}' && \
+            export VITE_ADMIN_ROUTE_PATH='${{ secrets.VITE_ADMIN_ROUTE_PATH }}'  && \
+            export TURNSTILE_SECRET_KEY='${{ secrets.TURNSTILE_SECRET_KEY }}' && \
+            chmod +x deploy/deploy.sh && \
+            bash deploy/deploy.sh
+          "
