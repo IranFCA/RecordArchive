@@ -1,4 +1,50 @@
-# Justice Archive Platform
+# Project Archived
+
+This repository is no longer actively maintained and has been archived.
+
+The initial goal of this project was to explore a secure, private evidence intake and archival system for documenting alleged financial or organizational relationships relevant to future judicial review. The focus was on privacy-first design, anonymous submissions, and long-term evidence preservation.
+
+After evaluating existing initiatives and the broader ecosystem, it became clear that more mature and actively maintained platforms already exist and are better positioned to handle this sensitive and complex domain.
+
+In particular, ongoing work by established projects such as [www.irantrial.org](http://www.irantrial.org) and similar human-rights documentation efforts provide a more robust, coordinated, and scalable approach.
+
+As a result, development of this repository has been discontinued in favor of:
+
+* avoiding fragmentation of sensitive data
+* supporting more established and credible platforms
+* reducing duplication of effort in a high-risk domain
+
+This repository remains available for reference purposes only, including:
+
+* early architectural ideas
+* privacy and security considerations
+* initial data modeling concepts
+
+## Important Note
+
+This project was never intended to publish or expose accusations publicly. All concepts were designed around private, unverified evidence intake for potential future review by qualified investigators or judicial bodies.
+
+No guarantees are made regarding the completeness, security, or suitability of this code for real-world use.
+
+## Recommendation
+
+If you are interested in contributing to this space, consider supporting or collaborating with established organizations and platforms that:
+
+* have legal and investigative backing
+* follow strict evidence verification methodologies
+* provide strong protections for contributors and data
+
+---
+
+Thank you to everyone who showed interest in the idea.
+
+---
+
+# Original Documentation (Archived)
+
+> **Note**: The content below is preserved for reference purposes only.
+
+## Justice Archive Platform
 
 A secure evidence intake and archival system for collecting documents and structured reports related to alleged financial or organizational links to the Iranian regime outside the country.
 
